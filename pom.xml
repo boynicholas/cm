@@ -33,14 +33,14 @@
 		<jdk.version>1.6</jdk.version>
 
 		<!-- 项目属性 -->
-		<jdbc.driver.groupId>com.h2database</jdbc.driver.groupId>
-		<jdbc.driver.artifactId>h2</jdbc.driver.artifactId>
-		<jdbc.driver.version>${h2.version}</jdbc.driver.version>
 		<!--
-			<jdbc.driver.groupId>mysql</jdbc.driver.groupId>
-			<jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId>
-			<jdbc.driver.version>5.1.21</jdbc.driver.version>
-		-->	
+			<jdbc.driver.groupId>com.h2database</jdbc.driver.groupId>
+			<jdbc.driver.artifactId>h2</jdbc.driver.artifactId>
+			<jdbc.driver.version>${h2.version}</jdbc.driver.version>
+		-->
+		<jdbc.driver.groupId>mysql</jdbc.driver.groupId>
+		<jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId>
+		<jdbc.driver.version>5.1.21</jdbc.driver.version>
 	</properties>
 
 	<!-- 设定插件仓库 如有Nexus私服, 取消注释并指向正确的服务器地址. 
