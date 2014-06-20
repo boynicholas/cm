@@ -1,6 +1,8 @@
 package cn.zhihang.cm.base.common;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,7 +16,7 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 public abstract class Coder {
-    public static final String KEY_SHA = "SHA";
+    public static final String KEY_SHA = "SHA-1";
     public static final String KEY_MD5 = "MD5";
     
     /**
@@ -67,12 +69,24 @@ public abstract class Coder {
       * @param data
       * @return
       * @throws NoSuchAlgorithmException
+     * @throws UnsupportedEncodingException 
      */
-    public static String encryptSHA1(String data) throws NoSuchAlgorithmException{
+    public static String encryptSHA1(String data) throws NoSuchAlgorithmException, UnsupportedEncodingException{
         MessageDigest sha = MessageDigest.getInstance(KEY_SHA);
-        sha.update(data.getBytes());
+        sha.update(data.getBytes("utf-8"));
+        byte[] result = sha.digest();
         
-        return new String(sha.digest());
+        StringBuffer sb = new StringBuffer();
+        
+        for (byte b : result) {
+            int i = b & 0xff;
+            if (i < 0xf) {
+                sb.append(0);
+            }
+            sb.append(Integer.toHexString(i));
+        }
+        
+        return sb.toString();
     }
     
     /**
@@ -101,6 +115,12 @@ public abstract class Coder {
         Mac mac = Mac.getInstance(secretKey.getAlgorithm());
         mac.init(secretKey);
         
-        return new String(mac.doFinal(data.getBytes()));
+        return new BigInteger(mac.doFinal(data.getBytes())).toString(16);
+    }
+    
+    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
+        String passSha = Coder.encryptSHA1("abcdef159357");
+        System.out.println(passSha);
+        System.out.println(Coder.encryptHMAC(passSha, "pD/Fbl7NwDolthkhNkyUKGNML9fta6mjfPSmqaHpStr531Z0E3RX1DDub5hJS2Z+Qri9Dz0bnW4OR2vVNf/oow=="));
     }
 }

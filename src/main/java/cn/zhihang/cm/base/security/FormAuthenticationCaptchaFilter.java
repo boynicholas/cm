@@ -3,7 +3,6 @@ package cn.zhihang.cm.base.security;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.security.auth.Subject;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 
 import com.google.code.kaptcha.Constants;
@@ -20,9 +20,39 @@ import cn.zhihang.cm.base.common.Logs;
 
 public class FormAuthenticationCaptchaFilter extends FormAuthenticationFilter {
     private static final Logger logger = Logs.get();
+    public static final String DEFAULT_USER_NAME = "user_name";
+    public static final String DEFAULT_USER_PASS = "user_pass";
+    public static final String DEFAULT_CAPTCHA = "captcha";
+    private String userNameParam = DEFAULT_USER_NAME;
+    private String userPassParam = DEFAULT_USER_PASS;
+    private String captchaParam = DEFAULT_CAPTCHA;
     
-    /* 主要针对登录成功的处理方法 */
-    protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request, ServletResponse response) throws Exception{
+    public String getUserNameParam(){
+        return userNameParam;
+    }
+    
+    public String getUserPassParam(){
+        return userPassParam;
+    }
+    
+    public String getCaptchaParam(){
+        return captchaParam;
+    }
+    
+    protected String getUsername(ServletRequest request){
+        return WebUtils.getCleanParam(request, getUserNameParam());
+    }
+    
+    protected String getPassword(ServletRequest request){
+        return WebUtils.getCleanParam(request, getUserPassParam());
+    }
+    
+    protected String getCaptcha(ServletRequest request){
+        return WebUtils.getCleanParam(request, getCaptchaParam());
+    }
+    
+    @Override
+    protected boolean onLoginSuccess(AuthenticationToken token, org.apache.shiro.subject.Subject subject, ServletRequest request, ServletResponse response) throws Exception {
         HttpServletRequest httpServletRequest = (HttpServletRequest)request;
         HttpServletResponse httpServletResponse = (HttpServletResponse)response;
         
@@ -37,7 +67,7 @@ public class FormAuthenticationCaptchaFilter extends FormAuthenticationFilter {
         }
         return false;
     }
-    
+
     /* 主要针对登录失败的处理方法 */
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request, ServletResponse response){
         HttpServletRequest httpServletRequest = (HttpServletRequest)request;
@@ -66,7 +96,7 @@ public class FormAuthenticationCaptchaFilter extends FormAuthenticationFilter {
             out.flush();
             out.close();
         }catch(IOException e1){
-            e1.printStackTrace();
+            logger.warn(e1.getMessage(), e1);
         }
         return false;
     }
@@ -115,4 +145,18 @@ public class FormAuthenticationCaptchaFilter extends FormAuthenticationFilter {
             return false;
         }
     }
+
+    @Override
+    protected AuthenticationToken createToken(ServletRequest request,
+            ServletResponse response) {
+        String username = getUsername(request);
+        String password = getPassword(request);
+        String captcha = getCaptcha(request);
+        boolean rememberMe = isRememberMe(request);
+        String host = getHost(request);
+        
+        return new UsernamePasswordCaptchaToken(username, password.toCharArray(), rememberMe, host, captcha);
+    }
+    
+    
 }

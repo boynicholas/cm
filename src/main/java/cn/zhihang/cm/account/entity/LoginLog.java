@@ -3,6 +3,8 @@ package cn.zhihang.cm.account.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "t_login_log")
@@ -11,6 +13,7 @@ public class LoginLog {
      * 日志ID
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer logId;
     
     /**
@@ -26,7 +29,7 @@ public class LoginLog {
     /**
      * 登录用户名
      */
-    private String uName;
+    private String userName;
     
     /**
      * 登录状态
@@ -57,12 +60,12 @@ public class LoginLog {
         this.loginIp = loginIp;
     }
 
-    public String getuName() {
-        return uName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setuName(String uName) {
-        this.uName = uName;
+    public void setUserName(String uName) {
+        this.userName = uName;
     }
 
     public String getStatus() {

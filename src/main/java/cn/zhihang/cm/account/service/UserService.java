@@ -49,7 +49,7 @@ public class UserService extends BaseService<User, Integer> {
       * @param u_name
       * @return
      */
-    public User getUserByUName(String u_name){
+    public User getUserByUserName(String u_name){
         return userDao.findByUserNameAndIsdelete(u_name, 0);
     }
     
