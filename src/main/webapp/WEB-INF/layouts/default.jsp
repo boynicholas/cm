@@ -7,32 +7,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>QuickStart示例:<sitemesh:title/></title>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta http-equiv="Cache-Control" content="no-store" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
+<title>智能消费管理平台</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+<link rel="stylesheet" href="${ctx}/static/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="${ctx}/static/styles/default.css">
 
-<link type="image/x-icon" href="${ctx}/static/images/favicon.ico" rel="shortcut icon">
-<link href="${ctx}/static/bootstrap/2.3.2/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-<link href="${ctx}/static/jquery-validation/1.11.1/validate.css" type="text/css" rel="stylesheet" />
-<link href="${ctx}/static/styles/default.css" type="text/css" rel="stylesheet" />
-<script src="${ctx}/static/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="${ctx}/static/jquery-validation/1.11.1/jquery.validate.min.js" type="text/javascript"></script>
-<script src="${ctx}/static/jquery-validation/1.11.1/messages_bs_zh.js" type="text/javascript"></script>
+<script type="text/javascript" src="${ctx}/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/jquery-validation/1.11.1/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/jquery-validation/1.11.1/messages_bs_zh.js"></script>
+<script type="text/javascript" src="${ctx}/static/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
-
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
 <sitemesh:head/>
 </head>
 
 <body>
-	<div class="container">
-		<%@ include file="/WEB-INF/layouts/header.jsp"%>
-		<div id="content">
-			<sitemesh:body/>
-		</div>
-		<%@ include file="/WEB-INF/layouts/footer.jsp"%>
-	</div>
-	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>
+<%@ include file="/WEB-INF/layouts/header.jsp"%>
+	<sitemesh:body/>
+<%@ include file="/WEB-INF/layouts/footer.jsp"%>
 </body>
 </html>

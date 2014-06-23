@@ -1,0 +1,62 @@
+.duty-user{
+	font-size:25px;
+	text-align:center;
+}
+
+#calendar{
+	width:100%;
+	text-align:center;
+}
+
+#calendar caption{
+	padding: 10px 0 5px;
+	font-size: 15px;
+}
+
+#calendar tbody td, #calendar tfoot td, #calendar thead th{
+	padding:5px 3px;
+	border:1px solid #eee;
+}
+
+
+#calendar thead th{
+	background:#fbfbfb;
+}
+
+#calendar tbody td a{
+	display: block;
+	margin: 0 3px;
+	background-color: #428BCA;
+	color: #fff;
+}
+
+#fullcalendar{
+	width:100%;
+	text-align:center;
+}
+
+#fullcalendar caption{
+	padding: 10px 0 5px;
+	font-size: 15px;
+}
+
+#fullcalendar tbody td, #fullcalendar tfoot td, #fullcalendar thead th{
+	padding:5px 3px;
+	border:1px solid #eee;
+}
+
+
+#fullcalendar thead th{
+	background:#fbfbfb;
+}
+
+#fullcalendar tbody td a{
+	display: block;
+	margin: 0 3px;
+	background-color: #428BCA;
+	color: #fff;
+}
+
+#fullcalendar tbody td{
+	text-align:left;
+}

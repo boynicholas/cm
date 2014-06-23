@@ -4,156 +4,171 @@
 
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
-<!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="${ctx}/static/bootstrap/2.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-responsive.min.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/static/font-awesome/css/font-awesome.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/loginStyle.css">
-
-<title>智能消费管理平台</title>
-
-<script type="text/javascript" src="static/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="static/bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="static/CryptoJS/sha1.js"></script>
 </head>
 <body>
-<div id="loginbox">
-	<div class="loginform">
-        <div class="control-group normal_text">
-            <h3>
-                <img src="${ctx}/static/images/login/logo.png" alt="智能消费管理平台">
-            </h3>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on bg_lg">
-                        <i class="icon-user"></i>
-                    </span><input type="text" id="u_name" name="u_name" placeholder="用户名">
+<div class="container">
+	<div class="row">
+    	<div class="col-md-6">
+        	<div class="panel panel-default">
+            	<div class="panel-heading">
+                	<h3 class="panel-title">登录智能消费管理平台</h3>
+                </div>
+                <div class="panel-body">
+                	<form class="form-horizontal" role="form" id="login_form">
+                    	<div class="form-group">
+                        	<label for="login_user_name" class="col-sm-2 control-label">用户名:</label>
+                            <div class="col-sm-6">
+                            	<input type="text" class="form-control" class="{required:true,rangelength[4,16]}" id="login_user_name" name="login_user_name" maxlength="16">
+                            </div>
+                            <div class="col-sm-4">
+                            	<span class="error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="login_user_pass" class="col-sm-2 control-label">密码:</label>
+                            <div class="col-sm-6">
+                            	<input type="password" class="form-control" id="login_user_pass" name="login_user_pass" class="{required:true,rangelength[6,32]}" maxlength="32">
+                            </div>
+                            <div class="col-sm-4">
+                            	<span class="error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="login_verify" class="col-sm-2 control-label">验证码:</label>
+                            <div class="col-sm-3">
+                            	<input type="text" class="form-control" class="required" id="login_verify" name="login_verify" maxlength="4">
+                            </div>
+                            <div class="col-sm-3">
+                            	<img src="kaptcha.jpg" onclick="this." style="border:1px;width:100px;height:35px;">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                        	<div class="col-sm-10 pull-right">
+                            	<button type="submit" class="btn btn-info col-sm-4">登录</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="control-group">
-            <div class="controls">
-                <div class="main_input_box">
-                    <span class="add-on bg_ly">
-                        <i class="icon-lock"></i>
-                    </span><input type="password" id="u_pass" name="u_pass" placeholder="密码">
+    	<div class="col-md-6">
+        	<div class="panel panel-default">
+            	<div class="panel-heading">
+                	<h3 class="panel-title">
+                    	注册智能消费管理平台
+                    </h3>
+                </div>
+                <div class="panel-body">
+                	<form class="form-horizontal" role="form" id="register_form">
+                    	<div class="form-group">
+                        	<label for="user_name" class="col-sm-2 control-label">用户名:</label>
+                            <div class="col-sm-6">
+                            	<input type="text" class="form-control" id="user_name" name="user_name" class="{required:true,rangelength[4,16]}" maxlength="16">
+                                <span class="help-block">请输入4-16位字符，英文、数字、下划线组合</span>
+                            </div>
+                            <div class="col-sm-4">
+                            	<span class="error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="user_nick" class="col-sm-2 control-label">昵称:</label>
+                            <div class="col-sm-6">
+                            	<input type="text" class="form-control" class="{required:true,rangelength[4,10]}" id="user_nick" name="user_nick" maxlength="10">
+                                <span class="help-block">请输入4-10位字符、英文、数字、汉字、下划线组合</span>
+                            </div>
+                            <div class="col-sm-4">
+                            	<span class="error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="user_pass" class="col-sm-2 control-label">密码:</label>
+                            <div class="col-sm-6">
+                            	<input type="password" class="form-control" class="{required:true,rangelength[6,32]}" id="user_pass" name="user_pass" maxlength="32">
+                                <span class="help-block">请输入6-32位字符，不允许空格</span>
+                            </div>
+                            <div class="col-sm-4">
+                            	<span class="error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="re_user_pass" class="col-sm-2 control-label">确认密码:</label>
+                            <div class="col-sm-6">
+                            	<input type="password" class="form-control" class="{required:true,equalTo:'#userpass'}" id="re_user_pass" name="re_user_pass" maxlength="32">
+                                <span class="help-block">请确认输入的密码</span>
+                            </div>
+                            <div class="col-sm-4">
+                            	<span class="error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="user_email" class="col-sm-2 control-label">邮箱:</label>
+                            <div class="col-sm-6">
+                            	<input type="text" class="form-control" class="{required:true,email:true}" id="user_email" name="user_email">
+                                <span class="help-block">请输入你的邮箱，请务必填写真实</span>
+                            </div>
+                            <div class="col-sm-4">
+                            	<span class="error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="user_qq" class="col-sm-2 control-label">QQ号码:</label>
+                            <div class="col-sm-6">
+                            	<input type="text" class="form-control" class="{required:true,digits:true}" id="user_qq" name="user_qq">
+                                <span class="help-block">请输入你的QQ号，请务必填写真实</span>
+                            </div>
+                            <div class="col-sm-4">
+                            	<span class="error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="user_phone" class="col-sm-2 control-label">手机号码:</label>
+                            <div class="col-sm-4">
+                            	<input type="text" class="form-control" class="{required:true,digits:true}" id="user_phone" name="user_phone">
+                                <span class="help-block">请输入正确的手机号码，并将手机收到的效验码输入下面的文本框中</span>
+                            </div>
+                            <div class="col-sm-6" style="padding-left:0;">
+                            	<button class="btn btn-primary" type="button">获取效验码</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="phone_verify" class="col-sm-2 control-label">效验码:</label>
+                            <div class="col-sm-4">
+                            	<input type="text" class="form-control" class="required" id="phone_verify" name="phone_verify" maxlength="6">
+                            </div>
+                            <div class="col-sm-4">
+                            	<span class="error"></span>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                         	<div class="col-sm-10 pull-right">
+                            	<button type="submit" class="btn btn-info col-sm-4">注册</button>
+                            </div>
+                         </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <p class="errmsg"></p>
-        <div class="form-actions">
-            <span class="pull-left">
-                <a href="javascript:;" class="flip-link btn btn-info" id="forword_btn">忘记密码?</a>
-            </span>
-            <span class="pull-right">
-                <a href="javascript:;" class="btn btn-success" id="login_btn">登陆</a>
-            </span>
-        </div>
-  	</div>
-</div>
-<div class="footer">
-	Copyright &copy; 2014 智航软件开发团队 All Rights reserved.
+    </div>
 </div>
 <script type="text/javascript">
 $(function(){
-	$("#login_btn").click(function(){
-		var login = new loginFun();
-		login.setUserName($("#u_name").val());
-		login.setUserPass($("#u_pass").val());
-		login.setCaptcha($("#captcha").val());
-		if(!login.loginCheck()){
-			return false;
+	$("#login_form").validate({
+		debug:true,
+		errorPlacement:function(error,element){
+			alert(elment.parent().next().html());
+			error.appendTo(element.parent().next().find(".error"));
 		}
-		login.login();
-	})
+	});
+	$("#register_form").validate({
+		debug:true,
+		errorPlacement:function(error,element){
+			error.appendTo(element.parent().next().find(".error"));
+		}
+	});
 })
-
-function loginFun(){
-	var _user_name;
-	var _user_pass;
-	var _captcha;
-	
-	this.setUserName = function(user_name){
-		_user_name = $.trim(user_name);
-	}
-	
-	this.getUserName = function(){
-		return _user_name;
-	}
-	
-	this.setUserPass = function(user_pass){
-		_user_pass = $.trim(user_pass);
-	}
-	
-	this.getUserPass = function(){
-		return _user_pass;
-	}
-	
-	this.setCaptcha = function(captcha){
-		_captcha = $.trim(captcha);
-	}
-	
-	this.getCaptcha = function(){
-		return _captcha;
-	}
-	
-	this.loginCheck = function(){
-		if(_user_name == null || _user_name.length == 0 || _user_name.length < 4 || _user_name.length > 16){
-			errMsg("用户名不正确");
-			return false;
-		}else if(_user_pass == null || _user_pass.length == 0 || _user_pass.length < 6 || _user_pass.length > 32){
-			errMsg("密码不正确");
-			return false;
-		}
-		return true;
-	}
-	
-	this.login = function(){
-		$.ajax({
-			url:'login',
-			type:'post',
-			dataType:"json",
-			data:"user_name=" + _user_name + "&user_pass=" + CryptoJS.SHA1(_user_pass) + "&captcha=" + _captcha + "&rememberMe=false",
-			success: function(data){
-				alert(data);
-			}
-		})
-	}
-}
-
-function errMsg(msg){
-	$(".errmsg").text(msg);
-	flash(".errmsg", 8, 30, 100);
-}
-
-function flash(obj,time,wh,fx)
-{ 
-	$(function(){
-	var $panel = $(obj);
-	var offset = $panel.offset()-$panel.width();
-	var x= offset.left;
-	var y= offset.top;
-	for(var i=1; i<=time; i++){
-		if(i%2==0)
-		{
-			$panel.animate({left:'+'+wh+'px'},fx);
-		}else
-		{
-			$panel.animate({left:'-'+wh+'px'},fx);
-		}
-			
-	}
-	$panel.animate({left:0},fx);
-	$panel.offset({ top: y, left: x });
-		
-	})
-}
 </script>
 </body>
 </html>

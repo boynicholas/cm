@@ -1,20 +1,40 @@
-/* header */
-#header {margin-bottom:15px;}
-
-#header h1 a {
-	color: #658A16;
-	text-decoration: none
+body{
+	font: 12px/1.6 Tahoma,microsoft yahei,"微软雅黑","宋体";
+	padding-top:70px;
 }
 
-#header h1 small {color: #BACE87;}
-
-/* footer */
-#footer {
-	margin-top: 15px;
-	padding: 15px 0px 0px 0px;
-	font-size: 95%;
-	text-align: center;
-	border-top: 2px solid #658A16;
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
 }
 
-#footer a {color: #999;}
+h1, h2, h3, h4, h5, h6, li{
+	font: 12px/1.6 Tahoma,microsoft yahei,"微软雅黑","宋体";
+}
+
+.body_bg{
+	background:#f6f7f7;
+}
+
+.panel .panel-heading h3.panel-title i.glyphicon{
+	margin-right:4px;
+}
+
+.panel .panel-heading{
+	padding: 7px 0 6px 10px;
+	cursor: pointer;
+	background: #fafafa;
+	background-image: -ms-linear-gradient(top, #fefefe, #f5f5f5);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fefefe), to(#f5f5f5));
+	background-image: -moz-linear-gradient(top, #fefefe, #f5f5f5);
+	background-image: -o-linear-gradient(top, #fefefe, #f5f5f5);
+	background-image: linear-gradient(top, #fefefe, #f5f5f5);
+	background-repeat: repeat-x;
+	position: relative;
+}
+
+.panel .panel-heading h3.panel-title{
+	font: 12px/1.6 Tahoma,microsoft yahei,"微软雅黑","宋体";
+	font-size: 14px;
+	color: #666666;
+	font-weight: 400;
+}

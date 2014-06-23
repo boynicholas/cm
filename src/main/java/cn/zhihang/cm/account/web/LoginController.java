@@ -1,5 +1,6 @@
 package cn.zhihang.cm.account.web;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
@@ -33,8 +34,11 @@ public class LoginController {
         
         if(!currentUser.isAuthenticated()){
             UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken(user_name, user_pass.toCharArray(), rememberMe, request.getRemoteHost(), captcha);
-            
-            currentUser.login(token);
+            try{
+                currentUser.login(token);
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

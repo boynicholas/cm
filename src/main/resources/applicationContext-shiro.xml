@@ -35,6 +35,7 @@
 				/static/** = anon
 				/api/** = anon
 				/register/** = anon
+				/kaptcha.jpg = anon
 				/admin/** = roles[admin]
 				/** = authc
 			</value>

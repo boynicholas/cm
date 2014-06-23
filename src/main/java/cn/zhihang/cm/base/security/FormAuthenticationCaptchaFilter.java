@@ -61,7 +61,7 @@ public class FormAuthenticationCaptchaFilter extends FormAuthenticationFilter {
         }else{
             httpServletRequest.setCharacterEncoding("utf-8");
             PrintWriter out = httpServletResponse.getWriter();
-            out.println("{success:true,msg:'登入成功'}");
+            out.println("{\"success\":true,\"message\":\"登入成功\"}");
             out.flush();
             out.close();
         }
@@ -84,13 +84,13 @@ public class FormAuthenticationCaptchaFilter extends FormAuthenticationFilter {
             String message = e.getClass().getSimpleName();
             
             if("IncorrectCredentialsException".equals(message)){
-                out.println("{success:false,message:'密码错误'}");
+                out.println("{\"success\":false,\"message\":\"密码错误\"}");
             }else if("UnknownAccountException".equals(message)){
-                out.println("{success:false,message:'帐号不存在'}");
+                out.println("{\"success\":false,\"message\":\"帐号不存在\"}");
             }else if("LockedAccountException".equals(message)){
-                out.println("{success:false,message:'帐号被锁定，请联系系统管理员'}");
+                out.println("{\"success\":false,\"message\":\"帐号被锁定，请联系系统管理员\"}");
             }else{
-                out.println("{success:false,message:'未知错误'}");
+                out.println("{\"success\":false,\"message\":\"未知错误\"}");
                 e.printStackTrace();
             }
             out.flush();
@@ -118,7 +118,7 @@ public class FormAuthenticationCaptchaFilter extends FormAuthenticationFilter {
                     if(!sCaptcha.equals(captcha)){
                         response.setCharacterEncoding("utf-8");
                         PrintWriter out = response.getWriter();
-                        out.println("{success:false,message:'验证码错误'}");
+                        out.println("{\"success\":false,\"message\":\"验证码错误\"}");
                         out.flush();
                         out.close();
                         return false;
@@ -138,7 +138,7 @@ public class FormAuthenticationCaptchaFilter extends FormAuthenticationFilter {
             }else{
                 response.setCharacterEncoding("utf-8");
                 PrintWriter out = response.getWriter();
-                out.println("{islogin:true, message:'login'}");
+                out.println("{\"islogin\":true, \"message\":\"login\"}");
                 out.flush();
                 out.close();
             }
