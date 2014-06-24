@@ -1,1 +1,5 @@
 /target/
+/src/main/resources/application.properties
+/test/resources/application.development.properties
+/test/resources/application.functional.properties
+/test/resources/application.test.properties
