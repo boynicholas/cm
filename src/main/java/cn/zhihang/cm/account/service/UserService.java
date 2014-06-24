@@ -55,6 +55,19 @@ public class UserService extends BaseService<User, Integer> {
     }
     
     /**
+     * 判断邮箱是否存在
+     */
+    public boolean existsUserEmail(String userEmail){
+    	User user = userDao.findByUserEmailAndIsdelete(userEmail, 0);
+    	
+    	if(user != null){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+    
+    /**
      * 检查User是否符合规定
      * @throws Exception 
      */
@@ -120,8 +133,24 @@ public class UserService extends BaseService<User, Integer> {
       * @param u_name
       * @return
      */
-    public User getUserByUserName(String u_name){
-        return userDao.findByUserNameAndIsdelete(u_name, 0);
+    public User getUserByUserName(String u_name, boolean isdelete){
+    	if(isdelete){
+    		return userDao.findByUserNameAndIsdelete(u_name, 0);
+    	}else{
+    		return userDao.findByUserName(u_name);
+    	}
+        
+    }
+    
+    /**
+     * 根据用户邮箱查找用户
+     */
+    public User getUserByUserEmail(String userEmail, boolean isdelete){
+    	if(isdelete){
+    		return userDao.findByUserEmailAndIsdelete(userEmail, 0);
+    	}else{
+    		return userDao.findByUserEmail(userEmail);
+    	}
     }
     
     /**
@@ -146,7 +175,10 @@ public class UserService extends BaseService<User, Integer> {
         if(user.getUserId() == null){ // 用户新注册
             if(existsUName(user.getUserName())){
                 throw new ServiceException(String.format("用户名%s已经存在.", user.getUserName()));
+            }else if(existsUserEmail(user.getUserEmail())){
+            	throw new ServiceException(String.format("邮箱%s已经被注册",user.getUserEmail()));
             }
+            
             user.setIslock(0);
             user.setIsverify(0);
             

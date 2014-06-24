@@ -66,7 +66,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
         UsernamePasswordCaptchaToken token = (UsernamePasswordCaptchaToken) authcToken;
         String username = token.getUsername();
         System.out.println(userService);
-        User user = userService.getUserByUserName(username);
+        User user = userService.getUserByUserName(username, true);
         String uPass = new String(token.getPassword());
 
         // 记录登录日志
@@ -127,7 +127,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
             PrincipalCollection principals) {
         ShiroUser shiroUser = (ShiroUser) principals.fromRealm(getName())
                 .iterator().next();
-        User user = userService.getUserByUserName(shiroUser.getUserName());
+        User user = userService.getUserByUserName(shiroUser.getUserName(), true);
 
         if (user != null) {
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();

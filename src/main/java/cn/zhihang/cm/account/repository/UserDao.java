@@ -23,4 +23,11 @@ public interface UserDao extends BaseDao<User, Integer> {
       * @return
      */
     public User findByUserName(String u_name);
+    
+    /**
+     * 根据用户邮箱查找用户
+     */
+    public User findByUserEmailAndIsdelete(String u_email, Integer is_delete);
+    
+    public User findByUserEmail(String userEmail);
 }

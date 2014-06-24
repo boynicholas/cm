@@ -1,5 +1,9 @@
 package cn.zhihang.cm.account.web;
 
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
@@ -53,7 +57,7 @@ public class LoginController {
     
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public String RegisterPost(@ModelAttribute User user, HttpServletRequest request){
+    public String RegisterPost(@ModelAttribute User user, HttpServletRequest request) throws InvalidKeyException, NoSuchAlgorithmException, IOException{
         Subject currentUser = SecurityUtils.getSubject();
         
         if(currentUser.isAuthenticated()){
@@ -66,11 +70,12 @@ public class LoginController {
         }catch(Exception e){
             return "{\"success\":false, \"message\":\""+e.getMessage()+"\"}";
         }
+        String userpass = user.getUserPass();
         
-        userService.save(user);
+        userService.saveUser(user);
         
         /* 注册成功后，直接进行登录 */
-        UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken(user.getUserName(), user.getUserPass().toCharArray(), false, request.getRemoteHost(), null);
+        UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken(user.getUserName(), userpass.toCharArray(), false, request.getRemoteHost(), null);
         
         try{
             currentUser.login(token);
@@ -84,12 +89,24 @@ public class LoginController {
     @RequestMapping(value = "/register/checkUser", method = RequestMethod.POST)
     @ResponseBody
     public String checkUser(@RequestParam String userName){
-        User user = userService.getUserByUserName(userName);
+        User user = userService.getUserByUserName(userName, false);
         
         if(user == null){
             return "true";
         }else{
             return "false";
         }
+    }
+    
+    @RequestMapping(value = "/register/checkEmail", method = RequestMethod.POST)
+    @ResponseBody
+    public String checkEmail(@RequestParam String userEmail){
+    	User user = userService.getUserByUserEmail(userEmail, false);
+    	
+    	if(user == null){
+    		return "true";
+    	}else{
+    		return "false";
+    	}
     }
 }

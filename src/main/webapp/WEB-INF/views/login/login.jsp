@@ -282,7 +282,15 @@ $(function(){
 			},
 			userEmail:{
 				required:true,
-				email:true
+				email:true,
+				remote:{
+					url:'register/checkEmail',
+					type:'post',
+					datatype:'json',
+					data:{
+						userEmail:function(){return $("#userEmail").val();}
+					}
+				}
 			},
 			userqq:{
 				required:true,
@@ -292,6 +300,9 @@ $(function(){
 		messages:{
 			userName:{
 				remote:"用户名已存在"
+			},
+			userEmail:{
+				remote:"该邮箱已被注册"
 			}
 		},
 		onkeyup:false,
