@@ -13,8 +13,9 @@
 <link rel="stylesheet" href="${ctx}/static/styles/default.css">
 
 <script type="text/javascript" src="${ctx}/static/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="${ctx}/static/jquery-validation/1.11.1/jquery.validate.min.js"></script>
-<script type="text/javascript" src="${ctx}/static/jquery-validation/1.11.1/messages_bs_zh.js"></script>
+<script type="text/javascript" src="${ctx}/static/jquery-validation/1.9.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/jquery-validation/1.9.0/jquery.metadata.js"></script>
+<script type="text/javascript" src="${ctx}/static/jquery-validation/1.9.0/messages_cn.js"></script>
 <script type="text/javascript" src="${ctx}/static/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

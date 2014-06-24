@@ -21,17 +21,17 @@ public class Role {
     /**
      * 超级管理员角色
      */
-    public static final long SUPER_ADMIN_ROLE_ID = 1;
+    public static final Integer SUPER_ADMIN_ROLE_ID = 1;
     
     /**
      * 普通管理员角色
      */
-    public static final long ADMIN_ROLE_ID = 2;
+    public static final Integer ADMIN_ROLE_ID = 2;
     
     /**
      * 普通用户角色
      */
-    public static final long USER_ROLE_ID = 3;
+    public static final Integer USER_ROLE_ID = 3;
     
     /**
      * 角色ID

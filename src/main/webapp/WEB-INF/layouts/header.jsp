@@ -17,22 +17,24 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         	<ul class="nav navbar-nav">
             	<li><a href="javascript:;">个人记账</a></li>
-                <li class="active"><a href="javascript:;">团队记账</a></li>
+                <li><a href="javascript:;">团队记账</a></li>
                 <li><a href="javascript:;">帮助</a></li>
                 <li><a href="javascript:;">关于</a></li>
             </ul>
+            <shiro:authenticated>
             <ul class="nav navbar-nav navbar-right">
             	<li><a href="javascript:;">设置</a></li>
                	<li class="dropdown">
-                	<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">倪大杰 <b class="caret"></b></a>
+                	<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">${user.userNick} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     	<li><a href="javascript:;">个人资料</a></li>
                         <li><a href="javascript:;">修改密码</a></li>
                         <li class="divider"></li>
-                        <li><a href="javascript:;">退出</a></li>
+                        <li><a href="index/logout">退出</a></li>
                     </ul>
                 </li>
             </ul>
+            </shiro:authenticated>
         </div>
     </nav>
     <!-- header end -->

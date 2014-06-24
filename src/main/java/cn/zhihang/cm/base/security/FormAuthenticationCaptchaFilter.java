@@ -20,9 +20,9 @@ import cn.zhihang.cm.base.common.Logs;
 
 public class FormAuthenticationCaptchaFilter extends FormAuthenticationFilter {
     private static final Logger logger = Logs.get();
-    public static final String DEFAULT_USER_NAME = "user_name";
-    public static final String DEFAULT_USER_PASS = "user_pass";
-    public static final String DEFAULT_CAPTCHA = "captcha";
+    public static final String DEFAULT_USER_NAME = "login_user_name";
+    public static final String DEFAULT_USER_PASS = "login_user_pass";
+    public static final String DEFAULT_CAPTCHA = "login_verify";
     private String userNameParam = DEFAULT_USER_NAME;
     private String userPassParam = DEFAULT_USER_PASS;
     private String captchaParam = DEFAULT_CAPTCHA;
@@ -109,7 +109,7 @@ public class FormAuthenticationCaptchaFilter extends FormAuthenticationFilter {
                     logger.trace("登录提交检测，试图提交登录");
                 }
                 if("XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest)request).getHeader("X-Requested-With"))){
-                    String captcha = request.getParameter("captcha");
+                    String captcha = request.getParameter("login_verify");
                     HttpServletRequest httpServletRequest = (HttpServletRequest)request;
                     String sCaptcha = (String)httpServletRequest.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
                     if(sCaptcha == null || "".equals(sCaptcha)){

@@ -11,7 +11,7 @@
 	</bean>
 
 	<!-- 項目自定义的Realm -->
-	<bean id="shiroDbRealm" class="cn.zhihang.cm.base.security.ShiroDbRealm" lazy-init="true" depends-on="userDao,loginLogDao">
+	<bean id="shiroDbRealm" class="cn.zhihang.cm.base.security.ShiroDbRealm" lazy-init="true" depends-on="userDao,loginLogDao,roleDao,teamDao">
 		<property name="cacheManager" ref="shiroEhcacheManager" />
 		<property name="authenticationCachingEnabled" value="true" />
 	</bean>

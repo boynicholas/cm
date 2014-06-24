@@ -38,3 +38,10 @@ h1, h2, h3, h4, h5, h6, li{
 	color: #666666;
 	font-weight: 400;
 }
+
+#footer{
+	text-align:center;
+	margin-top:20px;
+	font: 12px/1.6 Tahoma,microsoft yahei,"微软雅黑","宋体";
+	color:#666666;
+}

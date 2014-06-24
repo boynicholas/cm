@@ -12,12 +12,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.google.common.collect.Lists;
 
@@ -36,20 +35,23 @@ public class User {
     @NotBlank
     private String userPass;
     
-    @NotBlank
     private String userScode;
     
     @NotBlank
     private String userEmail;
     
-    @NotEmpty
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") 
     private Date userRegDate;
     
-    @NotNull
     private Integer isdelete;
     
-    @NotNull
     private Integer islock;
+    
+    private String userqq;
+   
+    private String userPhone;
+    
+    private Integer isverify;
     
     @Transient
     private List<Role> roleList = Lists.newArrayList();
@@ -137,6 +139,28 @@ public class User {
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
     }
-    
-    
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public Integer getIsverify() {
+        return isverify;
+    }
+
+    public void setIsverify(Integer isverify) {
+        this.isverify = isverify;
+    }
+
+    public String getUserqq() {
+        return userqq;
+    }
+
+    public void setUserqq(String userqq) {
+        this.userqq = userqq;
+    }
 }
